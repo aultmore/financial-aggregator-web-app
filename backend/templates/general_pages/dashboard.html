@@ -1,0 +1,305 @@
+{% extends "shared/base.html" %}
+
+
+{% block title %} 
+  <title>EvaToken</title>
+{% endblock %} 
+
+{% block content %}
+
+<div class="eve-container bg-home-page">
+  <div id="eve-box">
+      <div class="right-hand"><img src="/static/images/eve3_right_hand.png" /></div>
+      <div class="bulb">
+          <img class="bulb_off" src="/static/images/lamp_off.png" />
+          <img class="bulb_on" src="/static/images/lamp_on.png" />
+      </div>
+      <div class="body"><img src="/static/images/eve3_body.png" /></div>
+      <div class="head">
+          <div class="eyes"><img src="/static/images/eve3_eyes.png" /></div>
+          <img src="/static/images/eve3_head.png" />
+      </div>
+  </div>
+</div>
+
+<div class="eve-container">
+<div class="container">
+  <div class="black-frame col-md-9 mt-xl-5 mt-3 mb-xl-5 mb-3 rounded-3">
+
+    <div class="position-relative m-1">
+      <div class="position-absolute top-0 end-0 text-light">
+        <a href="/help">
+          Помощь
+        </a>
+        <a href="http://t.me/evatoken_net">
+          <img src="/static/images/telegram-app-200.png" width="50" height="50">
+        </a>
+      </div>
+    </div>
+
+    <div class="black-frame-inner p-xl-4   p-3 text-light">
+      <h1 class="display-5">EvaToken</h1>
+      <h5 class="my-2">
+        {{ current_user }}
+        <a href="/logout" class="btn btn-primary" role="button">Выйти</a>
+      </h5>
+      <h5 class="pt-3">Уровень  {{ level }}</h5>
+      {% if next_level_price > 0 %}
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: {{levelup_p}}%" aria-valuenow="{{levelup_p}}" aria-valuemin="0" aria-valuemax="100">{{levelup_hold}}</div>
+      </div>
+      <div>
+        <span class="align-baseline">
+        <img src="/static/images/token-coins-icon.png" height="20"/>
+        </span>
+        Принято для перехода на следующий уровень
+        <b>{{levelup_hold}}</b>
+        из
+        <b>{{next_level_price}}</b>
+      </div>
+
+      {#
+      <div class="progress my-4 text-center rounded-2 border border-secondary black-frame d-flex align-items-center" data1="{{levelup_p}}" data2="{{levelup_hold}}">
+        <div class="bar"><img src="/static/images/progress_bar.jpg" /></div>
+        <div class="text text-light h3 my-0 mx-1"><span></span></div>
+      </div>
+      #}
+
+      {% endif %}
+
+      {% if level > 0 %}
+      <h5 class="pt-4">Баланс</h5>
+      <div>
+        <span class="align-baseline">
+        <img src="/static/images/token-coins-icon.png" height="20"/>
+        </span>
+        <b>{{ balance }}</b>
+        &nbsp;&nbsp;&nbsp;
+        {% if balance < 100 %}
+        <button type="button" class="btn btn-secondary" disabled>Вывести</button>
+        {% else %}
+        <a href="/withdraw" class="btn btn-primary" role="button">Вывести</a>
+        {% endif %}
+      </div>
+
+      <h5 class="pt-4">Ссылка-приглашение</h5>
+      <div>
+        <div class="clipboard-example align-items-center w-100 pt-2">
+          <div class="input-group mb-3">
+              <input id="in01"
+                    type="text"
+                    class="form-control bg-dark"
+                    placeholder="Invitation link"
+                    aria-label="Invitation link"
+                    aria-describedby="inv01"
+                    {# value="{{scheme}}://{{hostname}}/register/{{invite_token}}" #}
+                    value="{{url}}/register/{{invite_token}}"
+                    readonly
+              />
+              <button id="btn01"
+                      class="btn btn-secondary"
+                      type="button"
+                      data-clipboard-demo=""
+                      data-clipboard-target="#in01"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="bottom"
+                      title="Copy to Clipboard"
+              >
+              Копировать</button>
+          </div>
+        </div>
+      </div>
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script>
+  let btn = document.getElementById('btn01');
+  let clipboard = new ClipboardJS(btn);
+
+  // clipboard.on('success', function(e) {
+  //     console.log(e);
+  // });
+
+  // clipboard.on('error', function(e) {
+  //     console.log(e);
+  // });
+</script>
+
+<h5 class="pt-4">Приглашенные игроки</h5>
+<table class="table text-light">
+  <thead>
+    <tr>
+      <th scope="col" style="width: 5%">Линия</th>
+      <th scope="col" style="width: 5%">Всего</th>
+      <th scope="col">Уровни</th>
+    </tr>
+  </thead>
+  <tbody>
+
+<tr><th scope="row">1</th>
+  <td>{{su1}}</td>
+  <td colspan="7">
+  <div class="progress">
+    {% if is_superuser == False %}
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: {{su1_l4p}}%" aria-valuenow="{{su1_l4p}}" aria-valuemin="0" aria-valuemax="100">{{su1_l4}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{su1_l3p}}%" aria-valuenow="{{su1_l3p}}" aria-valuemin="0" aria-valuemax="100">{{su1_l3}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{su1_l2p}}%" aria-valuenow="{{su1_l2p}}" aria-valuemin="0" aria-valuemax="100">{{su1_l2}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: {{su1_l1p}}%" aria-valuenow="{{su1_l1p}}" aria-valuemin="0" aria-valuemax="100">{{su1_l1}}</div>
+      <div class="progress-bar                                            bg-secondary" role="progressbar" style="width: {{su1_l0p}}%" aria-valuenow="{{su1_l0p}}" aria-valuemin="0" aria-valuemax="100">{{su1_l0}}</div>
+    {% else %}
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: {{su1_l1p}}%" aria-valuenow="{{su1_l1p}}" aria-valuemin="0" aria-valuemax="100">{{su1_l1}}</div>
+    {% endif %}
+  </div>
+</td></tr>
+
+{% if su2 > 0 %}
+<tr><th scope="row">2</th>
+  <td>{{su2}}</td>
+  <td colspan="7">
+  <div class="progress">
+    {% if is_superuser == False %}
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: {{su2_l4p}}%" aria-valuenow="{{su2_l4p}}" aria-valuemin="0" aria-valuemax="100">{{su2_l4}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{su2_l3p}}%" aria-valuenow="{{su2_l3p}}" aria-valuemin="0" aria-valuemax="100">{{su2_l3}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{su2_l2p}}%" aria-valuenow="{{su2_l2p}}" aria-valuemin="0" aria-valuemax="100">{{su2_l2}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: {{su2_l1p}}%" aria-valuenow="{{su2_l1p}}" aria-valuemin="0" aria-valuemax="100">{{su2_l1}}</div>
+      <div class="progress-bar                                            bg-secondary" role="progressbar" style="width: {{su2_l0p}}%" aria-valuenow="{{su2_l0p}}" aria-valuemin="0" aria-valuemax="100">{{su2_l0}}</div>
+    {% else %}
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{su2_l2p}}%" aria-valuenow="{{su2_l2p}}" aria-valuemin="0" aria-valuemax="100">{{su2_l2}}</div>
+    {% endif %}
+  </div>
+</td></tr>
+{% endif %}
+
+{% if su3 > 0 %}
+<tr><th scope="row">3</th>
+  <td>{{su3}}</td>
+  <td colspan="7">
+  <div class="progress">
+    {% if is_superuser == False %}
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: {{su3_l4p}}%" aria-valuenow="{{su3_l4p}}" aria-valuemin="0" aria-valuemax="100">{{su3_l4}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{su3_l3p}}%" aria-valuenow="{{su3_l3p}}" aria-valuemin="0" aria-valuemax="100">{{su3_l3}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{su3_l2p}}%" aria-valuenow="{{su3_l2p}}" aria-valuemin="0" aria-valuemax="100">{{su3_l2}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: {{su3_l1p}}%" aria-valuenow="{{su3_l1p}}" aria-valuemin="0" aria-valuemax="100">{{su3_l1}}</div>
+      <div class="progress-bar                                            bg-secondary" role="progressbar" style="width: {{su3_l0p}}%" aria-valuenow="{{su3_l0p}}" aria-valuemin="0" aria-valuemax="100">{{su3_l0}}</div>
+    {% else %}
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{su3_l3p}}%" aria-valuenow="{{su3_l3p}}" aria-valuemin="0" aria-valuemax="100">{{su3_l3}}</div>
+    {% endif %}
+  </div>
+</td></tr>
+{% endif %}
+
+{% if su4 > 0 %}
+<tr><th scope="row">4</th>
+  <td>{{su4}}</td>
+  <td colspan="7">
+  <div class="progress">
+    {% if is_superuser == False %}
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: {{su4_l4p}}%" aria-valuenow="{{su4_l4p}}" aria-valuemin="0" aria-valuemax="100">{{su4_l4}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{su4_l3p}}%" aria-valuenow="{{su4_l3p}}" aria-valuemin="0" aria-valuemax="100">{{su4_l3}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{su4_l2p}}%" aria-valuenow="{{su4_l2p}}" aria-valuemin="0" aria-valuemax="100">{{su4_l2}}</div>
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: {{su4_l1p}}%" aria-valuenow="{{su4_l1p}}" aria-valuemin="0" aria-valuemax="100">{{su4_l1}}</div>
+      <div class="progress-bar                                            bg-secondary" role="progressbar" style="width: {{su4_l0p}}%" aria-valuenow="{{su4_l0p}}" aria-valuemin="0" aria-valuemax="100">{{su4_l0}}</div>
+    {% else %}
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: {{su4_l4p}}%" aria-valuenow="{{su4_l4p}}" aria-valuemin="0" aria-valuemax="100">{{su4_l4}}</div>
+    {% endif %}
+  </div>
+</td></tr>
+{% endif %}
+
+</tbody>
+</table>
+
+<h5 class="pt-4">Цвета и стоимости уровней</h5>
+<table class="table table-borderless text-light">
+  <tbody>
+  <tr>
+    <td style="width: 20%">
+      <div class="bg-danger text-center rounded">
+      Уровень 4<br/>
+      {{l4_price}}
+      </div>
+    </td>
+    <td style="width: 20%">
+      <div class="bg-warning text-center rounded">
+      Уровень 3<br/>{{l3_price}}
+      </div>
+    </td>
+    <td style="width: 20%">
+      <div class="bg-success text-center rounded">
+        Уровень 2<br/>{{l2_price}}
+      </div>
+    </td>
+    <td style="width: 20%">
+      <div class="bg-primary text-center rounded">
+      Уровень 1<br/>{{l1_price}}
+      </div>
+    </td>
+    <td style="width: 20%">
+      <div class="bg-secondary text-center rounded">
+        Уровень 0<br/><br/>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+{% else %}
+
+<div class="text-wrap pt-4">
+Для повышения уровня переведите 100 USDT на адрес
+<div class="badge bg-primary">{{ system_address }}</div>
+сети
+<div class="badge bg-secondary">Tron: {{ system_network }}</div>
+</div>
+
+{#
+<div class="text-wrap">
+В поле <div class="badge bg-secondary">Notes</div> перевода
+<b>ОБЯЗАТЕЛЬНО</b> укажите свой логин
+<div class="badge bg-primary">{{ current_user }}</div>
+</div>
+#}
+
+<br/>
+
+<div class="text-wrap">
+Введите ID подтвержденной транзакции в следюущем поле:
+<form method="POST" class="needs-validation mb-5" novalidate action="/txid">
+  <div class="input-group mb-3">
+    <input type="text" required placeholder="Введите ID транзакции" name="txid" value="" class="form-control bg-dark mt-3" required>
+    &nbsp;&nbsp;&nbsp;
+    <button type="submit" class="mt-3 btn btn-primary">Проверить транзакцию</button>
+  </div>
+</form>
+</div>
+<div class="text-wrap">
+Получение и обработка перевода может занять несколько минут.
+</div>
+<div class="text-wrap">
+Повышение уровня будет произведено автоматически при поступлении достаточных средств.
+Остаток средств будет переведен на баланс игрока.
+</div>
+
+
+<script>
+function checkUserLevel(data)
+{
+  if(typeof data === 'object' && data.level > 0)
+  {
+    location.reload();
+  }
+}
+setInterval(() => {
+	fetch(`/users/userlevel`)
+    .then((response) => response.json())
+    .then((data) => checkUserLevel(data));
+}, 7000);
+</script>
+
+
+{% endif %}
+    </div>
+</div>
+</div>
+</div>
+  
+{% endblock %} 

@@ -1,0 +1,70 @@
+{% extends "shared/base.html" %}
+
+
+{% block title %} 
+  <title>EvaToken - Помощь</title>
+{% endblock %} 
+
+{% block content %}
+
+<div class="eve-container bg-home-page">
+  <div id="eve-box">
+      <div class="right-hand"><img src="/static/images/eve3_right_hand.png" /></div>
+      <div class="bulb">
+          <img class="bulb_off" src="/static/images/lamp_off.png" />
+          <img class="bulb_on" src="/static/images/lamp_on.png" />
+      </div>
+      <div class="body"><img src="/static/images/eve3_body.png" /></div>
+      <div class="head">
+          <div class="eyes"><img src="/static/images/eve3_eyes.png" /></div>
+          <img src="/static/images/eve3_head.png" />
+      </div>
+  </div>
+</div>
+
+<div class="eve-container">
+<div class="container">
+  <div class="black-frame col-md-9 mt-xl-5 mt-3 mb-xl-5 mb-3 rounded-3">
+
+    <div class="position-relative m-1">
+      <div class="position-absolute top-0 end-0 text-light">
+        <a href="/dashboard">
+          Главная
+        </a>
+        <a href="http://t.me/evatoken_net">
+          <img src="/static/images/telegram-app-200.png" width="50" height="50">
+        </a>
+      </div>
+    </div>
+
+    <div class="black-frame-inner p-xl-4   p-3 text-light">
+      <h1 class="display-5">EvaToken</h1>
+      <h6 class="display-6">Справочник</h6>
+
+      <div>
+        <p><a href="/static/EvaToken - FAQ.pdf"><b>Общие сведения</b></a></p>
+        
+        <p><a href="/static/EvaToken FAQ (монетизация).pdf"><b>Инструкция по взносу и выводу средств</b></a></p>
+        
+        <p><b>Принцип построения работы EvaToken:</b></p>
+        <p>
+        Принцип распределения средств представлен по системе 4-х приглашенных Партнеров.
+        </p>
+      </div>
+
+      <img src="/static/images/evatoken-scheme.jpg" class="img-fluid">
+
+      <div>
+        <p>Задача Куратора состоит в том, чтобы развить свою 1-ю линию Партнеров до максимально возможного количества.</p>
+        <p>Каждый приглашенный Партнер является Куратором своей собственной системы.</p>
+        <p>Линии Партнеров 2, 3, 4 автоматически приобретают соответствующие уровни у своих Кураторов при достижении необходимого баланса на их личных счетах.</p>
+        <p>Баланс на приобретение последующего уровня замораживается автоматически при поступлении вознаграждения на кошеле в личном кабинете.</p>
+        <p>Пример: для достижения Партнером следующего 3-го уровня на его кошельке в личном кабинете замораживается вознаграждение, которое поступает ему от Партнеров 2-х уровней. Полученное вознаграждение от Партнеров 1-ых уровней не замораживается.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+  
+{% endblock %} 

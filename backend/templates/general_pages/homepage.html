@@ -1,0 +1,17 @@
+{% extends "shared/base.html" %}
+
+
+{% block title %} 
+  <title>EvaToken</title>
+{% endblock %} 
+
+{% block content %} 
+  <div class="container">
+    <h1 class="display-4">EvaToken</h1>
+  </div>
+
+  {% with msg=msg %}    
+    {% include "components/alerts.html" %}
+  {% endwith %}
+
+{% endblock %} 

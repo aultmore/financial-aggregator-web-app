@@ -1,0 +1,15 @@
+fastapi
+fastapi-utils
+uvicorn
+jinja2
+aiofiles
+sqlalchemy
+psycopg2
+python-dotenv
+pydantic[email]
+passlib[bcrypt]
+python-jose
+python-multipart
+pytest
+requests
+tronpy

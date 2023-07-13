@@ -1,0 +1,220 @@
+a {
+    color: #e839b2;
+}
+
+input {
+    color: white !important;
+}
+
+.eve-container {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-size: cover;
+}
+
+#eve-box {
+    overflow: hidden;
+}
+
+#eve-box div {
+    position: absolute;
+}
+
+#eve-box div > img {
+    width: 100%;
+}
+
+.eve-container.bg-register {
+    background: url("/static/images/background1.jpg") no-repeat center;
+}
+
+.eve-container.bg-login {
+    background: url("/static/images/background2.jpg") no-repeat center;
+}
+
+.eve-container.bg-home-page {
+    height: 100%;
+    background: url("/static/images/background3.jpg") no-repeat center;
+}
+
+.eve-container.bg-register #eve-box {
+    width: 30%;
+    position: absolute;
+    right: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.eve-container.bg-login #eve-box {
+    width: 47%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+}
+
+.eve-container.bg-home-page #eve-box {
+    width: 45%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.eve-container.bg-register #eve-box .body {
+    width: 84.5%;
+    bottom: 0;
+    margin-left: 5.2%;
+}
+
+.eve-container.bg-login #eve-box .right-hand {
+    width: 36.6%;
+    margin-top: 45%;
+    margin-left: 12.2%;
+    transform-origin: 35% 25% 0;
+}
+
+.eve-container.bg-login #eve-box .left-hand {
+    width: 50.9%;
+    margin-top: 20.5%;
+    margin-left: 49.1%;
+    transform-origin: 26.1% 28.2% 0;
+}
+
+.eve-container.bg-login #eve-box .eyes {
+    width: 24.2%;
+    margin-top: 20.2%;
+    margin-left: 10.9%;
+}
+
+.eve-container.bg-login #eve-box .body {
+    width: 84.5%;
+}
+
+.eve-container.bg-register #eve-box .head {
+    width: 85%;
+    top: 0;
+}
+
+.eve-container.bg-register #eve-box .eyes {
+    width: 40%;
+    top: 39%;
+    left: 23%;
+}
+
+.eve-container.bg-register #eve-box .hand {
+    width: 49%;
+    top: 30%;
+    right: 0;
+}
+
+.eve-container.bg-home-page #eve-box .head {
+    width: 70.9%;
+    margin-left: 25%;
+}
+
+.eve-container.bg-home-page #eve-box .body {
+    width: 76.5%;
+    margin-left: 23.5%;
+    margin-top: 32%;
+}
+
+.eve-container.bg-home-page #eve-box .right-hand {
+    width: 52.6%;
+    margin-left: 7.1%;
+    margin-top: 28.4%;
+    transform-origin: 60.8% 65.9% 0;
+}
+
+.eve-container.bg-home-page #eve-box .eyes {
+    width: 21.3%;
+    margin-left: 20%;
+    margin-top: 45%;
+}
+
+.eve-container.bg-home-page #eve-box .bulb {
+    width: 62%;
+    margin-top: 7.8%;
+}
+
+.eve-container.bg-home-page #eve-box .bulb > img {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.black-frame {
+    background: url("/static/images/black_px.png") repeat;
+    overflow: hidden;
+}
+
+.eve-container.login .black-frame-inner {
+    background: url("/static/images/keys-icon.svg") no-repeat right top;
+}
+
+.eve-container.register .black-frame-inner {
+    background: url("/static/images/door-icon.svg") no-repeat right top;
+}
+
+.btn {
+    background: linear-gradient(#4d0437, #832265);
+    border: 1px solid #832265;
+}
+
+.progress {
+    height: 30px;
+    overflow: hidden;
+    box-shadow:
+            0 0 20px 2px rgba(255, 255, 255, 0.3),
+            0 0 20px 5px rgba(255, 228, 12, 0.3);
+}
+
+.progress .text {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.progress img.coin {
+    position: relative;
+    top: -2px;
+}
+
+.progress .bar {
+    width: 0;
+    margin-left: 3px;
+    height: 33px;
+    position: absolute;
+}
+
+.progress .bar > img {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 765px) {
+    .eve-container.bg-register #eve-box {
+        width: 40%;
+        top: auto;
+        transform: none;
+        bottom: 3%;
+        right: 2%;
+    }
+
+    .eve-container.bg-login #eve-box {
+        width: 70%;
+        top: auto;
+        transform: none;
+        bottom: 3%;
+        right: 2%;
+    }
+
+    .eve-container.bg-home-page #eve-box {
+        width: 70%;
+        top: 0;
+        transform: none;
+    }
+}

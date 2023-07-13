@@ -1,0 +1,312 @@
+{% extends "shared/base.html" %}
+
+
+{% block title %}
+  <title>EvaToken - Регистрация</title>
+{% endblock %}
+
+{% block content %}
+<div class="eve-container bg-login">
+  <div id="eve-box">
+      <div class="right-hand"><img src="/static/images/eve2_right_hand.png"></div>
+      <div class="body"><img src="/static/images/eve2_body.png"></div>
+      <div class="eyes"><img src="/static/images/eve2_eyes.png"></div>
+      <div class="left-hand"><img src="/static/images/eve2_left_hand.png"></div>
+  </div>
+</div>
+
+<div class="eve-container login">
+<div class="container">
+  <br/>
+  <div class="black-frame col-md-5 rounded-3">
+
+    <div class="position-relative m-1">
+      <div class="position-absolute top-0 end-0 text-light">
+        <a href="http://t.me/evatoken_net">
+          <img src="/static/images/telegram-app-200.png" width="50" height="50">
+        </a>
+      </div>
+    </div>
+
+    <div class="black-frame-inner p-xl-4 p-3 text-light">
+      
+      <div class="row">
+        <h5 class="display-5">EvaToken</h5>
+        <h5 class="display-6">Регистрация</h5>
+        <div class="text-danger font-weight-bold">
+            {% for error in errors %}
+              <li>{{error}}</li>
+            {% endfor %}
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <form method="POST" class="needs-validation mb-5"
+                novalidate action="#" method="#">
+          <input type="text" name="ref" value="{{ref}}" class="visually-hidden">
+          <div class="mb-3">
+            <label>Email</label>
+            <input type="text" required placeholder="Ваш email" name="email" value="{{email}}" class="form-control bg-dark">
+          </div>
+          <div class="mb-3">
+            <label>Имя пользователя Telegram</label>
+            <input type="text" required placeholder="@username" name="tlg_username" value="{{tlg_username}}" class="form-control bg-dark">
+          </div>
+          <div class="mb-3">
+            <!--<label>Password</label>
+            <input type="password" required placeholder="Choose a secure password" value="{{password}}" name="password" class="form-control"> -->
+            <div class="col">
+              <label for="validationPassword">Пароль</label>
+              <input type="password" class="form-control bg-dark" id="validationPassword" minlength="8" name="password" placeholder="Password" value="" required>
+              <div  class="progress" style="height: 5px;">
+              <div id="progressbar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 10%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                
+              </div>
+              </div>
+              <small id="passwordHelpBlock" class="form-text text-muted">
+              Пароль должен содержать 8-20 символов и включать символы "!@#$%&*_?", цифры, прописные и заглавные буквы.
+              </small>
+          
+              <div id="feedbackin" class="valid-feedback">
+                Отличный пароль!
+              </div>
+              <div id="feedbackirn" class="invalid-feedback">
+                Минимум 8 символов,
+                Цифры, специальные символы 
+                Прописные и заглавные буквы
+              </div>                    
+              </div>
+              <div class="col">
+                <label for="password2">Еще раз</label>
+                <input type="password" class="form-control bg-dark"  minlength="8" id="password2" name="password2" placeholder="Еще раз" value="" required>
+                <div class="invalid-feedback">
+                  Пароли должны совпадать.
+                </div>
+              </div>
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input bg-dark" type="checkbox" value="1" name="isAdult" required>
+              <label class="form-check-label" for="isAdult">
+                Я старше 18 лет
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input bg-dark" type="checkbox" value="1" name="isAgreed" required>
+              <label class="form-check-label" for="isAgreed">
+                Я согласен с условиями
+              </label>
+            </div>
+            <a class="mx-2 text-light" href="/static/EvaToken - Договор оферта.pdf">Условия предоставления сервиса</a>
+          </div>
+          <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+<script>
+  (function () {
+'use strict'
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+var forms = document.querySelectorAll('.needs-validation')
+
+// Loop over them and prevent submission
+Array.prototype.slice.call(forms)
+  .forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      {% if checkPassword is defined and checkPassword == True %}
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      {% endif %}
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+  
+  $('button').on ('click', function (event) {
+      if($('#validationPassword').val() === $('#password2').val()) {
+          $('#password2').removeClass("is-invalid")
+          $('#password2').addClass("is-valid")
+          return true;
+      } else {
+          //alert("don't matches");
+          //event.preventDefault()
+          //event.stopPropagation()
+          $('#password2').removeClass("is-valid")
+          $('#password2').addClass("is-invalid")
+          return false;
+      }
+  })
+</script>
+<script id="rendered-js" >
+  (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        // making sure password enters the right characters
+        form.validationPassword.addEventListener('keypress', function (event) {
+          //console.log("keypress");
+          //console.log("event.which: " + event.which);
+          var checkx = true;
+          var chr = String.fromCharCode(event.which);
+          //console.log("char: " + chr);
+  
+  
+          var matchedCase = new Array();
+          matchedCase.push("[!@#$%&*_?]"); // Special Charector
+          matchedCase.push("[A-Z]"); // Uppercase Alpabates
+          matchedCase.push("[0-9]"); // Numbers
+          matchedCase.push("[a-z]");
+  
+          for (var i = 0; i < matchedCase.length; i++) {
+            //if (window.CP.shouldStopExecution(0)) break;
+            //console.log(matchedCase[i])
+            if (new RegExp(matchedCase[i]).test(chr)) {
+              //console.log("checkx: is true");
+              checkx = false;
+            }
+          }
+          //window.CP.exitedLoop(0);
+
+  
+          if (form.validationPassword.value.length >= 20)
+          checkx = true;
+  
+          if (checkx) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+  
+        });
+  
+        //Validate Password to have more than 8 Characters and A capital Letter, small letter, number and special character
+        // Create an array and push all possible values that you want in password
+        var matchedCase = new Array();
+        matchedCase.push("[$@$$!%*#?&]"); // Special Charector
+        matchedCase.push("[A-Z]"); // Uppercase Alpabates
+        matchedCase.push("[0-9]"); // Numbers
+        matchedCase.push("[a-z]"); // Lowercase Alphabates
+  
+  
+        form.validationPassword.addEventListener('keyup', function () {
+  
+          var messageCase = new Array();
+          messageCase.push(" специальный символ"); // Special Charector
+          messageCase.push(" заглавная буква"); // Uppercase Alpabates
+          messageCase.push(" цифры"); // Numbers
+          messageCase.push(" прописная буква"); // Lowercase Alphabates
+  
+          var ctr = 0;
+          var rti = "";
+          for (var i = 0; i < matchedCase.length; i++) {
+            //if (window.CP.shouldStopExecution(1)) break;
+            if (new RegExp(matchedCase[i]).test(form.validationPassword.value)) {
+              if (i == 0) messageCase.splice(messageCase.indexOf(" специальный символ"), 1);
+              if (i == 1) messageCase.splice(messageCase.indexOf(" заглавная буква"), 1);
+              if (i == 2) messageCase.splice(messageCase.indexOf(" цифры"), 1);
+              if (i == 3) messageCase.splice(messageCase.indexOf(" прописная буква"), 1);
+              ctr++;
+              //console.log(ctr);
+              //console.log(rti);
+            }
+          }
+  
+  
+          //console.log(rti);
+          // Display it
+          //window.CP.exitedLoop(1);
+          var progressbar = 0;
+          var strength = "";
+          var bClass = "";
+          switch (ctr) {
+            case 0:
+            case 1:
+              strength = "Совсем простой";
+              progressbar = 15;
+              bClass = "bg-danger";
+              break;
+            case 2:
+              strength = "Немного простой";
+              progressbar = 25;
+              bClass = "bg-danger";
+              break;
+            case 3:
+              strength = "Простой";
+              progressbar = 34;
+              bClass = "bg-warning";
+              break;
+            case 4:
+              strength = "Так себе";
+              progressbar = 65;
+              bClass = "bg-warning";
+              break;}
+  
+  
+          if (progressbar == 65 && form.validationPassword.value.length >= 8) {
+            strength = "Хороший";
+            bClass = "bg-success";
+            form.validationPassword.setCustomValidity("");
+          } else {
+            form.validationPassword.setCustomValidity(strength);
+          }
+  
+          var sometext = "";
+  
+          if (form.validationPassword.value.length < 8) {
+            var lengthI = 8 - form.validationPassword.value.length;
+            sometext += ` еще ${lengthI} символов, `;
+          }
+  
+          sometext += messageCase;
+          //console.log(sometext);
+  
+          //console.log(sometext);
+  
+          if (sometext) {
+            sometext = ", вам надо ввести" + sometext;
+          }
+  
+  
+          $("#feedbackin, #feedbackirn").text(strength + sometext);
+          $("#progressbar").removeClass("bg-danger bg-warning bg-success").addClass(bClass);
+          var plength = form.validationPassword.value.length;
+          if (plength > 0) progressbar += (plength - 0) * 1.75;
+          //console.log("plength: " + plength);
+          var percentage = progressbar + "%";
+          form.validationPassword.parentNode.classList.add('was-validated');
+          //console.log("pacentage: " + percentage);
+          $("#progressbar").width(percentage);
+  
+          /*if (form.validationPassword.checkValidity() === true) {
+            form.verifyPassword.disabled = false;
+          } else {
+            form.verifyPassword.disabled = true;
+          }*/
+  
+  
+        });
+  
+  
+  
+      });
+    }, false);
+  })();
+</script>
+
+
+{% endblock %}
+  

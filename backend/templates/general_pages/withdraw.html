@@ -1,0 +1,111 @@
+{% extends "shared/base.html" %}
+
+
+{% block title %}
+  <title>EvaToken - Вывод токенов</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="eve-container bg-home-page">
+  <div id="eve-box">
+      <div class="right-hand"><img src="/static/images/eve3_right_hand.png" /></div>
+      <div class="bulb">
+          <img class="bulb_off" src="/static/images/lamp_off.png" />
+          <img class="bulb_on" src="/static/images/lamp_on.png" />
+      </div>
+      <div class="body"><img src="/static/images/eve3_body.png" /></div>
+      <div class="head">
+          <div class="eyes"><img src="/static/images/eve3_eyes.png" /></div>
+          <img src="/static/images/eve3_head.png" />
+      </div>
+  </div>
+</div>
+
+<div class="eve-container">
+  <div class="container text-light">
+  <div class="black-frame col-md-5 mt-5 mb-5 rounded-3">
+
+    <div class="position-relative m-1">
+      <div class="position-absolute top-0 end-0 text-light">
+        <a href="http://t.me/evatoken_net">
+          <img src="/static/images/telegram-app-200.png" width="50" height="50">
+        </a>
+      </div>
+    </div>
+
+    <div class="black-frame-inner p-xl-4 p-3 text-light">
+      <div class="row">
+        <h5 class="display-5">EvaToken</h5>
+        <h6 class="display-6">Вывод токенов</h6>
+        <div class="text-danger font-weight-bold">
+            {% for error in errors %}
+              <li>{{error}}</li>
+            {% endfor %}
+        </div>
+      </div>
+
+      {% if page_2 is not defined %}
+
+      <h5 class="pt-4">Баланс</h5>
+      <div>
+        <span class="align-baseline">
+        <img src="/static/images/token-coins-icon.png" height="20"/>
+        </span>
+        <b>{{ balance }}</b>
+      </div>
+
+      <div class="pt-4">
+        Комиссия за перевод составит 15%.
+      </div>
+
+      <div class="row my-4">
+        <form method="POST" class="needs-validation mb-5" novalidate action="#" method="#">
+          <div class="mb-3">
+            <label>Сумма</label>
+            <input type="text" required placeholder="Введите сумму от 100 до {{balance}}" name="amount" value="{{amount}}" class="form-control bg-dark">
+          </div>
+          <div class="mb-3">
+            <label>Адрес кошелька USDT (TRC20)</label>
+            <input type="text" required placeholder="Txxxxx....." name="to_address" value="{{to_address}}" class="form-control bg-dark">
+          </div>
+          <div class="pt-4">
+            <button type="submit" class="btn btn-primary">Запросить вывод</button>
+            <a href="/dashboard/" class="btn btn-secondary">Отменить</a>
+          </div>
+        </form>
+      </div>
+
+      {% else %}
+
+      <h5 class="pt-4">Баланс после перевода</h5>
+      <div>
+        <span class="align-baseline">
+        <img src="/static/images/token-coins-icon.png" height="20"/>
+        </span>
+        <b>{{ balance }}</b>
+      </div>
+      
+      <div class="row my-5">
+        <div class="mb-5">
+          <div class="p-2">
+          Вы запросили перевод <b>{{amount}}</b> токенов на адрес кошелька <b>{{to_address}}</b>.
+          </div>
+          <div class="p-2">
+          Заявка будет выполнена в течение 24 часов.
+          <br/>
+          Комиссия за перевод составит 15%.
+          </div>
+        </div>
+        <a href="/dashboard/" class="btn btn-secondary">На главную страницу</a>
+      </div>
+      
+      {% endif %}
+    
+    </div>
+  </div>
+  </div>
+</div>
+
+  {% endblock %}
+  

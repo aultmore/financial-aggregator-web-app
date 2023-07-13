@@ -1,0 +1,31 @@
+{% extends "shared/base.html" %}
+
+{% block title %}
+  <title>EvaToken - Выход</title>
+{% endblock %}
+
+{% block content %}
+<div class="eve-container bg-login">
+  <div id="eve-box">
+      <div class="right-hand"><img src="/static/images/eve2_right_hand.png"></div>
+      <div class="body"><img src="/static/images/eve2_body.png"></div>
+      <div class="eyes"><img src="/static/images/eve2_eyes.png"></div>
+      <div class="left-hand"><img src="/static/images/eve2_left_hand.png"></div>
+  </div>
+</div>
+<div class="eve-container login">
+  <div class="container">
+    <div class="row pt-5">
+      <h5 class="display-6 text-light pt-5 text-center">Вы вышли из системы</h5>
+      <div class="text-success font-weight-bold">
+      </div>
+    </div>
+
+
+    <div class="row my-2 px-5 pt-5">
+        <a class="btn btn-primary" href="/login" role="button">Войти снова</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+  
